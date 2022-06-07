@@ -1,10 +1,30 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
+import { BlogsService } from './blogs.service';
 
-@Controller('blogs')
+// localhost:3000/api/v1/blogs
+@Controller({
+  version: '1',
+  path: 'blogs',
+})
 export class BlogsController {
-  // localhost:3000/blogs
+
+  constructor(private readonly blosService: BlogsService) {}
+
+  // localhost:3000/api/v1/blogs/
   @Get()
   findAll() {
-    return { message: 'Hello Blogs' };
+    return this.blosService.findAll();
+  }
+
+  // localhost:3000/api/v1/getdate/
+  @Get('getdate')
+  getSystemDate(){
+    return this.blosService.getSystemDate();
+  }
+
+  // localhost:3000/api/v1/blogs/6
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return { blog_id: id };
   }
 }
