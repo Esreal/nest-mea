@@ -16,7 +16,7 @@ export class BlogsController {
     return this.blosService.findAll();
   }
 
-  // localhost:3000/api/v1/getdate/
+  // localhost:3000/api/v1/blogs/getdate/
   @Get('getdate')
   getSystemDate(){
     return this.blosService.getSystemDate();
